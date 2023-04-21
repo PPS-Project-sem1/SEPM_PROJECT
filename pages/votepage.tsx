@@ -3,7 +3,8 @@ import React from 'react'
 const Home = () => {
     return (
     <div className="bg-gray-100 text-white">
-        <header className="bg-indigo-500 p-6">
+        <header className="bg-indigo-500 p-2 flex items-center">
+            <img src="/Emblem_of_India.svg" className="h-28 w-28"/>
             <h1 className="text-3xl font-bold">Election Commission of India</h1>
         </header>
         <div className="flex justify-center items-center md:h-screen">
