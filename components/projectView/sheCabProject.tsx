@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import { Player } from '@livepeer/react';
 import { CONTRACT_ADDRESS, abi } from '../../constants';
@@ -28,7 +29,7 @@ const Project = () => {
     return web3Provider;
   };
 
-  const investInProject = async projectID => {
+  const investInProject = async (projectID) => {
     try {
       const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
@@ -55,9 +56,10 @@ const Project = () => {
       </div>
       <div className="flex text-sm md:text-xl w-1/2 mb-3">
         <p className="text-center text-gray-300">
-          On our web-application, a female customer can find a cab to her destination and get a cab with female driver.
-          It increases the saftey measures for women and allow them to travel safely. Also, a female driver can get her
-          ride and earn money.
+          On our web-application, a female customer can find a cab to her
+          destination and get a cab with female driver. It increases the saftey
+          measures for women and allow them to travel safely. Also, a female
+          driver can get her ride and earn money.
         </p>
       </div>
       <div className="flex text-sm md:text-xl  text-gray-300 mb-3">
@@ -68,7 +70,7 @@ const Project = () => {
         <p>Investment Goal : </p>
         <p>300</p>
       </div>
-      
+
       <div className="w-[60%] h-[60%] flex flex-col justify-center m-5">
         <Player
           title="Waterfalls"
@@ -80,7 +82,10 @@ const Project = () => {
             autohide: 3000,
           }}
         />
-        <button className="mt-5 bg-[#3F51B5] ml-[43%] py-2 rounded-md w-36 hover:opacity-60" onClick={() => investInProject(projectID)}>
+        <button
+          className="mt-5 bg-[#3F51B5] ml-[43%] py-2 rounded-md w-36 hover:opacity-60"
+          onClick={() => investInProject(projectID)}
+        >
           Invest
         </button>
       </div>

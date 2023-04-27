@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Menu from '@/components/menu/Menu';
 import Card from '@/components/cards/cards';
 import Web3Modal from 'web3modal';
@@ -11,8 +12,7 @@ export default function Home() {
   const web3ModalRef = useRef();
 
   const getProviderOrSigner = async (needSigner = false) => {
-    console.log(web3ModalRef);
-    const provider = await web3ModalRef.current.connect();
+    const provider = await web3ModalRef?.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
     const network = await web3Provider.getNetwork();

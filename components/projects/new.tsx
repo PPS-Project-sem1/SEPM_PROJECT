@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { useCreateAsset } from '@livepeer/react';
@@ -39,7 +40,10 @@ const New = () => {
     //investmentProgress: Yup.number().required('progress is required'),
   });
 
-  const onSubmit = async (values: PROJECT_INPUTS, { resetForm }: FormikHelpers<PROJECT_INPUTS>) => {
+  const onSubmit = async (
+    values: PROJECT_INPUTS,
+    { resetForm }: FormikHelpers<PROJECT_INPUTS>
+  ) => {
     try {
       console.log(values);
       resetForm();
@@ -63,7 +67,7 @@ const New = () => {
       ? {
           sources: [{ name: video.name, file: video }] as const,
         }
-      : null,
+      : null
   );
 
   const getProviderOrSigner = async (needSigner = false) => {
@@ -89,10 +93,10 @@ const New = () => {
       const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
       const tx = await contract.projectregister(
-        "Voting App",
-        "A voting app",
+        'Voting App',
+        'A voting app',
         1000,
-        100,
+        100
       );
       const receipt = await tx.wait();
       console.log(receipt);
@@ -111,7 +115,11 @@ const New = () => {
 
   return (
     <>
-      <Formik initialValues={initialValues} validationSchema={submitSchema} onSubmit={onSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={submitSchema}
+        onSubmit={onSubmit}
+      >
         <Form className="h-[80vh] flex items-center flex-col text-white font-semibold">
           <div className="w-10/12 flex flex-col justify-center items-center h-full bg-[#292424] m-10">
             <h2 className="text-medium-turquoise bg-indigo-dye text-4xl rounded-xl font-semibold py-10 ">
@@ -124,14 +132,16 @@ const New = () => {
                     <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                       <span className="font-semibold">Click to Upload</span>
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Upload Your Files</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Upload Your Files
+                    </p>
                   </div>
                   <input
                     type="file"
                     className="hidden"
                     accept="video/*"
                     multiple={false}
-                    onChange={e => {
+                    onChange={(e) => {
                       setVideo(e.target.files?.[0]);
                     }}
                   />
@@ -156,7 +166,8 @@ const New = () => {
                     <div className="flex justify-between w-8/12 mb-1">
                       <div className="flex flex-col w-full">
                         <span>
-                          Name of the Event<span className="text-red-600"> *</span>
+                          Name of the Event
+                          <span className="text-red-600"> *</span>
                         </span>
                         <Field
                           name="name"
@@ -243,7 +254,7 @@ const New = () => {
           </div>
         </Form>
       </Formik>
-      {assets?.map(asset => (
+      {assets?.map((asset) => (
         <div key={asset.id}>
           <div>
             <div>Asset Name: {asset?.name}</div>

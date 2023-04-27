@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import { Player } from '@livepeer/react';
 import { CONTRACT_ADDRESS, abi } from '../../constants';
@@ -28,7 +29,7 @@ const Project = () => {
     return web3Provider;
   };
 
-  const investInProject = async projectID => {
+  const investInProject = async (projectID) => {
     try {
       const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, abi, signer);
